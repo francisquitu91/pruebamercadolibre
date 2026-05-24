@@ -1,0 +1,72 @@
+# Root Project Structure
+
+```
+Prueba Ecommerce/
+│
+├── frontend/                          # React + TypeScript + Vite
+│   ├── src/
+│   │   ├── components/               # Componentes reutilizables
+│   │   ├── pages/                    # Páginas principales
+│   │   ├── context/                  # Zustand cart store
+│   │   ├── services/                 # API services
+│   │   ├── lib/                      # Utilities (supabase client)
+│   │   ├── types/                    # TypeScript types
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── index.html
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── vite.config.ts
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── .eslintrc.cjs
+│   ├── .env                          # Variables públicas
+│   ├── .env.example
+│   └── .gitignore
+│
+├── supabase/                          # Supabase Backend
+│   ├── functions/
+│   │   ├── create-payment/           # Edge Function: Crear pago
+│   │   ├── mercadopago-webhook/      # Edge Function: Webhook
+│   │   └── order-status/             # Edge Function: Estado orden
+│   ├── migrations/
+│   │   └── 20240101000000_init.sql   # Tablas y RLS
+│   └── config.toml
+│
+├── README.md                          # Documentación principal
+├── QUICKSTART.md                      # Setup en 5 minutos
+├── SETUP.md                           # Setup completo paso a paso
+├── DEPLOYMENT.md                      # Deploy en Render
+├── ARCHITECTURE.md                    # Arquitectura y seguridad
+├── STATUS.md                          # Estado del proyecto
+└── .gitignore                         # Git ignore global
+```
+
+## 🚀 Comandos Principales
+
+```bash
+# Frontend
+cd frontend && npm install
+npm run dev              # Desarrollar locally
+npm run build            # Build para producción
+npm run preview          # Preview del build
+
+# Backend (Supabase)
+supabase login
+supabase link --project-ref bgugepseqlyffrtfkepo
+supabase db push         # Ejecutar migraciones
+supabase functions deploy create-payment
+supabase functions deploy mercadopago-webhook
+supabase functions deploy order-status
+supabase secrets set VARIABLE_NAME "value"
+```
+
+## 📖 Documentación
+
+- **README.md**: Overview completo del proyecto
+- **QUICKSTART.md**: Para ejecutar en 5 minutos
+- **SETUP.md**: Setup paso a paso detallado
+- **DEPLOYMENT.md**: Deploy a Render
+- **ARCHITECTURE.md**: Cómo funciona todo
+- **STATUS.md**: Estado actual y próximos pasos

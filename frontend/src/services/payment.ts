@@ -25,6 +25,9 @@ export async function createPayment(request: PaymentRequest): Promise<PaymentRes
 export async function getOrderStatus(orderId: string): Promise<string> {
   const response = await fetch(`${EDGE_FUNCTION_URL}/order-status?order_id=${orderId}`, {
     method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+    },
   })
 
   if (!response.ok) {

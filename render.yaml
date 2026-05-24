@@ -3,8 +3,8 @@ services:
     name: pruebamercadolibre
     runtime: node
     plan: free
-    buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npm run preview -- --host 0.0.0.0 --port 3000
+    buildCommand: npm run build
+    startCommand: npm run preview
     healthCheckPath: /
     envVars:
       - key: VITE_SUPABASE_URL

@@ -1,0 +1,12 @@
+{
+  "name": "prueba-ecommerce",
+  "version": "1.0.0",
+  "description": "E-commerce MVP with React, Vite, Supabase, and Mercado Pago",
+  "type": "module",
+  "scripts": {
+    "preview": "cd frontend && npm run preview -- --host 0.0.0.0 --port 3000",
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "install": "cd frontend && npm install"
+  }
+}

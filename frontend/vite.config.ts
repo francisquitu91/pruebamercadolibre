@@ -17,4 +17,9 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
   },
+  preview: {
+    allowedHosts: ['pruebamercadolibre.onrender.com', 'localhost'],
+    host: '0.0.0.0',
+    port: 3000,
+  },
 })

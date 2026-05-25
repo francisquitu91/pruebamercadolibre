@@ -91,7 +91,7 @@ serve(async (req) => {
     const { error: updateError } = await supabase
       .from("orders")
       .update({ status: orderStatus })
-      .eq("mercadopago_payment_id", paymentData.external_reference)
+      .eq("id", paymentData.external_reference)
 
     if (updateError) {
       console.error("Error updating order:", updateError)
@@ -110,7 +110,7 @@ serve(async (req) => {
       const { data: order, error: orderFetchError } = await supabase
         .from("orders")
         .select("id")
-        .eq("mercadopago_payment_id", paymentData.external_reference)
+        .eq("id", paymentData.external_reference)
         .single()
 
       if (!orderFetchError && order) {

@@ -9,6 +9,11 @@ export function SuccessPage() {
   const [orderId, setOrderId] = useState<string>('')
 
   useEffect(() => {
+    // Don't poll if status is already final
+    if (status !== 'loading') {
+      return
+    }
+
     const fetchStatus = async () => {
       try {
         // Get order ID from session storage or URL params
@@ -28,10 +33,17 @@ export function SuccessPage() {
       }
     }
 
-    // Small delay to ensure webhook has processed
-    const timer = setTimeout(fetchStatus, 2000)
-    return () => clearTimeout(timer)
-  }, [searchParams])
+    // Poll status every 2 seconds
+    const timer = setInterval(fetchStatus, 2000)
+    
+    // Initial fetch after a small delay
+    const initialTimer = setTimeout(() => fetchStatus(), 500)
+    
+    return () => {
+      clearInterval(timer)
+      clearTimeout(initialTimer)
+    }
+  }, [searchParams, status])
 
   return (
     <div className="container mx-auto px-6 py-12">

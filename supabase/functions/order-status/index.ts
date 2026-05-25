@@ -53,12 +53,15 @@ serve(async (req) => {
       })
     }
 
-    // Fetch order status using public function
-    const { data: result, error: queryError } = await supabase
-      .rpc('get_order_status', { p_order_id: orderId })
+    // Fetch order status
+    const { data: order, error: orderError } = await supabase
+      .from("orders")
+      .select("status")
+      .eq("id", orderId)
+      .single()
 
-    if (queryError || !result) {
-      console.error("Error fetching order:", queryError)
+    if (orderError || !order) {
+      console.error("Error fetching order:", orderError)
       return new Response(
         JSON.stringify({ error: "Order not found" }),
         {
@@ -74,7 +77,7 @@ serve(async (req) => {
     }
 
     return new Response(
-      JSON.stringify({ status: result }),
+      JSON.stringify({ status: order.status }),
       {
         status: 200,
         headers: {
